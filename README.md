@@ -1,0 +1,2 @@
+# gitdirections
+git入门
