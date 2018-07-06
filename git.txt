@@ -5,3 +5,5 @@ git config --global user.email "xx"
 2.创建git仓库（文件夹）通过git bash 输入框找到需要成为仓库的文件夹，输入 git init
 a.将文件提交到缓存区 git add 文件名
 b.将文件提交到仓库 git commit -m "注释"
+3.git常用命令：
+a、git status 查看当前是否还有文件未提交
