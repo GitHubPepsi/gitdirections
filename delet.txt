@@ -1,0 +1,32 @@
+假设要删除的文件是password.txt，运行如下命令：
+
+git filter-branch --force --index-filter 'git \
+rm --cached --ignore-unmatch password.txt' \
+--prune-empty --tag-name-filter cat -- --all
+1
+2
+3
+如果commit已经同步到了github，那么再运行如下命令永久删除远端上的文件。
+
+git push --all --force
+问题的产生
+众所周知，git是用来进行版本控制的，可以恢复到任何commit了的历史状态，对于新手来说，经常会把一些不必要的数据或者敏感数据放到github的公开项目中。比如说我，刚接触git时，每次修改之后都用 git add .图省事，结果一些.class， .zip， .exe文件都被commit了，很烦人。要是不小心提交了密码或者机器的SSH key，就容易产生安全隐患。
+
+一个简单但错误的办法就是使用git rm password.txt 命令删除敏感文件，但是这仅仅是把文件从当前版本中删除，历史版本中仍然有。
+
+下面来说说正确命令的每个选项是什么意思：
+
+git filter-branch --force --index-filter 'git \
+rm --cached --ignore-unmatch password.txt' \
+--prune-empty --tag-name-filter cat -- --all
+1
+2
+3
+filter-branch 是让git重写每一个分支， 
+--force 假如遇到冲突也让git强制执行， 
+--index-filter 选项指定重写的时候应该执行什么命令，要执行的命令紧跟在它的后面，在这里就是git rm --cached --ignore-unmatch password.txt ，让git删除掉缓存的文件，如果有匹配的话。
+
+--prune-empty 选项告诉git，如果因为重写导致某些commit变成了空（比如修改的文件全部被删除），那么忽略掉这个commit。
+
+--tag-name-filter 表示对每一个tag如何重命名，重命名的命令紧跟在后面，当前的tag名会从标注输入送给后面的命令，用cat就表示保持tag名不变。 
+紧跟着的-- 表示分割符，最后的--all 表示对所有的文件都考虑在内。
