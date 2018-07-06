@@ -9,3 +9,4 @@ b.将文件提交到仓库 git commit -m "注释"
 a、git status 查看当前是否还有文件未提交（当文件被修改后不管有没有add git都能检测到，也可查看修改内容）
 b、git diff 文件名 查看文件内容的改动情况
 4.版本回退
+a、git log --pretty=oneline 将日志输出简化
