@@ -6,4 +6,6 @@ git config --global user.email "xx"
 a.将文件提交到缓存区 git add 文件名
 b.将文件提交到仓库 git commit -m "注释"
 3.git常用命令：
-a、git status 查看当前是否还有文件未提交
+a、git status 查看当前是否还有文件未提交（当文件被修改后不管有没有add git都能检测到，也可查看修改内容）
+b、git diff 文件名 查看文件内容的改动情况
+4.版本回退
