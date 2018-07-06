@@ -1,0 +1,7 @@
+git分布式版本管理系统
+1.首先需要设置全局的user.name和user.email,也可对单独的仓库（repository）进行设置
+git config --global user.name "xx"
+git config --global user.email "xx"
+2.创建git仓库（文件夹）通过git bash 输入框找到需要成为仓库的文件夹，输入 git init
+a.将文件提交到缓存区 git add 文件名
+b.将文件提交到仓库 git commit -m "注释"
